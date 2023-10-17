@@ -1,17 +1,10 @@
-
-{{
-
-config(
-materialized='table'
-   )
-}}
-
-with customers as(
-    select * from {{ref('Stg_customers')}}
+with customers as (
+    select * from {{ ref('stg_customers') }}
 ),
 
 orders as(
-    select * from {{ ref('Stg_orders')}}
+
+ select * from {{ ref('stg_orders') }}
 ),
 
 customer_orders as (
@@ -46,26 +39,3 @@ left join customer_orders using(customer_id)
 )
 
 select * from final
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
